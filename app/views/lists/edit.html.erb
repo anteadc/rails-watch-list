@@ -1,0 +1,47 @@
+<h1>Lists#edit</h1>
+<p>Find me in app/views/lists/edit.html.erb</p>
+
+<%= simple_form_for @list do |f| %>
+  <%= f.input :name %>
+  <%= f.input :photo %>
+  <%= f.button :submit %>
+
+<%= link_to 'Back', lists_path %>
+
+<%
+# app/controllers/lists_controller.rb
+# ...
+def edit
+  @list = List.find(params[:id])
+end
+
+def update
+  @list = List.find(params[:id])
+  @list.update(list_params)
+  redirect_to list_path(@list)
+end
+
+private
+
+def list_params
+  params.require(:list).permit(:name, :photo)
+end
+
+# app/views/lists/edit.html.erb
+
+<%= simple_form_for @list do |f| %>
+  <%= f.input :name %>
+  <%= f.input :photo %>
+  <%= f.button :submit %>
+
+
+<%= link_to 'Back', lists_path %>
+
+<%
+# app/controllers/lists_controller.rb
+
+def destroy
+  @list = List.find(params[:id])
+  @list.destroy
+  redirect_to lists_path
+end

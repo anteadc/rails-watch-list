@@ -1,0 +1,10 @@
+<h1>Lists#show</h1>
+<p>Find me in app/views/lists/show.html.erb</p>
+
+<p>
+  <strong>Ze List:</strong>
+  <%= @list.name %>
+</p>
+
+<%= link_to 'new bookmark', new_list_bookmark_path(@list.id) %>
+<%= link_to 'Bak', lists_path %>
